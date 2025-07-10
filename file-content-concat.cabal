@@ -23,13 +23,58 @@ source-repository head
   type: git
   location: https://github.com/githubuser/file-content-concat
 
-executable file-content-concat-exe
+library
+  exposed-modules:
+      Cat
+  other-modules:
+      Paths_file_content_concat
+  autogen-modules:
+      Paths_file_content_concat
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
+  build-depends:
+      base >=4.7 && <5
+    , bytestring
+    , optparse-applicative
+  default-language: Haskell2010
+
+executable file-content-concat
   main-is: Main.hs
+  other-modules:
+      Cat
+      Paths_file_content_concat
+  autogen-modules:
+      Paths_file_content_concat
   hs-source-dirs:
       app
+      src
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
     , bytestring
     , optparse-applicative
-  default-language: Haskell2010 
+  default-language: Haskell2010
+
+test-suite file-content-concat-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_file_content_concat
+  autogen-modules:
+      Paths_file_content_concat
+  hs-source-dirs:
+      test
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -Wall
+  build-depends:
+      QuickCheck
+    , base
+    , bytestring
+    , directory
+    , file-content-concat
+    , filepath
+    , hspec
+    , optparse-applicative
+    , temporary
+    , text
+  default-language: Haskell2010

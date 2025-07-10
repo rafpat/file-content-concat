@@ -1,6 +1,6 @@
-name:                haskell-options-applicative
+name:                file-content-concat
 version:             0.1.0.0
-github:              "githubuser/haskell-options-applicative"
+github:              "githubuser/file-content-concat"
 license:             BSD-3-Clause
 author:              "Author name here"
 maintainer:          "example@example.com"
@@ -17,12 +17,33 @@ extra-source-files:
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description:         Please see the README on GitHub at <https://github.com/githubuser/haskell-options-applicative#readme>
+description:         Please see the README on GitHub at <https://github.com/githubuser/file-content-concat#readme>
 
 dependencies:
 - base >= 4.7 && < 5
 - optparse-applicative
 - bytestring
+
+library:
+  source-dirs: src
+  exposed-modules:
+  - Cat
+
+tests:
+  file-content-concat-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -Wall
+    dependencies:
+    - file-content-concat
+    - base
+    - hspec
+    - QuickCheck
+    - directory
+    - temporary
+    - filepath
+    - text
 
 ghc-options:
 - -Wall
@@ -36,9 +57,11 @@ ghc-options:
 - -Wredundant-constraints
 
 executables:
-  haskell-options-applicative-exe:
+  file-content-concat:
     main:                Main.hs
-    source-dirs:         app
+    source-dirs:
+    - app
+    - src
     ghc-options:
     - -threaded
     - -rtsopts
